@@ -2,7 +2,7 @@ class Attendance < ApplicationRecord
   belongs_to :user
   belongs_to :event
 
-  after_create :validation_send
+  after_create :send_participation_notification
 
   private
 
