@@ -12,7 +12,8 @@ def create_user
 end
 
 def new_event
-  Event.new(start_date: Faker::Date.forward(days: 365), duration: rand([5,10,15,20,25,30,35,40,45,50,55,60]), title: Faker::Movie.title, description: Faker::Movie.quote, price: rand(1..1000), location: Faker::Address.city)
+  duration_array = [5,10,15,20,25,30,35,40,45,50,55,60]
+  Event.new(start_date: Faker::Date.forward(days: 365), duration: duration_array.sample, title: Faker::Movie.title, description: Faker::Movie.quote, price: rand(1..1000), location: Faker::Address.city)
 end
 
 def new_attendance
@@ -23,16 +24,16 @@ def generate_database
   10.times do 
     user = create_user
     event = new_event
-    event.administrator_id = User.id
-    event.create
+    event.administrator_id = user.id
+    event.save
   end
   20.times do
     attendance = new_attendance
     attendance.user = User.all.sample
     attendance.event = Event.all.sample
-    attendance.create
+    attendance.save
   end
   puts "database completed!"
 end
 
-puts "test"
+generate_database
