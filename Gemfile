@@ -60,4 +60,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'faker'
+gem "letter_opener", group: :development
 gem 'validates_timeliness', '~> 6.0.0.alpha1'
