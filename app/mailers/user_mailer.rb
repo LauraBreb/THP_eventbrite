@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    mail(to: @user.email, subject: "Bienvue sur l'appli eventbrite !")
+    mail(to: @user.email, from: 'breb.laura@gmail.com', subject: "Bienvue sur l'appli eventbrite !")
   end
 
 
