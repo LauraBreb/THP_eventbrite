@@ -6,9 +6,9 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Bienvue sur l'appli eventbrite !")
   end
 
-  def event_validation_email(user)
-    @user = user
-    mail(to: @user.email, subject: "Votre participation est confirmée !")
+  def event_participation_email(attendance)
+    @attendance = attendance
+    mail(to: @attendance.event.administrator.email, subject: "Un participant s'est inscrit à votre évènement !")
   end
 
 

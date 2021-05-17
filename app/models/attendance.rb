@@ -6,7 +6,7 @@ class Attendance < ApplicationRecord
 
   private
 
-  def send_validation
-    UserMailer.event_validation_email(self).deliver_now
+  def send_participation_notification
+    UserMailer.event_participation_email(self).deliver_now
   end
 end
