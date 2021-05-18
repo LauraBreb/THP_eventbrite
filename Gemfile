@@ -64,3 +64,4 @@ gem "letter_opener", group: :development
 gem 'dotenv-rails'
 gem 'validates_timeliness', '~> 6.0.0.alpha1'
 gem 'devise'
+gem 'table_print'

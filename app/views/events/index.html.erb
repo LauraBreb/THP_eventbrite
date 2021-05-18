@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Bienvenue sur liste des évènements ! </h1>
+    <p>Retrouve tous les évènements proposés par notre communauté !</p>
+    <p><%= link_to "Créer un évènement", new_event_path, class: "btn btn-primary btn-lg", role: "button"%></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-md-4">
+        <h2><%=event.title%></h2>
+        <p>organisé par <%= event.administrator.first_name %> <%= event.administrator.last_name %></p>
+        <div>
+          <%= link_to "Accéder à l'évènement", event_path(event.id), class: "btn btn-primary btn-sm", role: "button"%> <br><br>
+        </div>
+      </div>
+    <% end%>
+  </div>
+
+  <hr>
+
+</div>

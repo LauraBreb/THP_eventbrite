@@ -1,14 +1,14 @@
 require 'faker'
 
-# User.destroy.all
-# Event.destroy.all
-# Attendance.destroy.all
+User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
 
 def create_user
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   email = "#{first_name}.#{last_name}@yopmail.com"
-  User.create(first_name: first_name, last_name: last_name, description: Faker::Quotes::Shakespeare.hamlet_quote, email: email, encrypted_password: SecureRandom.urlsafe_base64)
+  User.create(first_name: first_name, last_name: last_name, description: Faker::Quotes::Shakespeare.hamlet_quote, email: email, password: Faker::Lorem.characters(number: 10))
 end
 
 def new_event

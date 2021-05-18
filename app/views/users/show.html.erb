@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card">
+    <h5 class="card-header">Mes informations</h5>
+    <div class="card-body">
+      <h5 class="card-title"><%=@user.first_name%> <%=@user.last_name%></h5>
+      <p class="card-text">Email : <%=@user.email%></p>
+      <p class="card-text">Description : <%=@user.description%></p>
+      <p><%= link_to "Modifier mon profil", edit_user_path(@user.id), class: "btn btn-primary btn-sm", role: "button"%></p>
+      <p><%= link_to "Modifier mes paramètres de connexion", edit_user_registration_path, class: "btn btn-light btn-sm", type: "submit" %></p>
+    </div>
+  </div>
+</div>
+
+<br><br><br>
+
+<div class="container">
+  <div class="card">
+    <h5 class="card-header">Mes évènements </h5>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <% if @events!= nil %>
+                <% @events.each do |event| %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%=event.title%></h5>
+                    <p class="card-text"><%=event.description%></p>
+                    <%= link_to "Accéder à l'évènement", event_path(event.id), class: "btn btn-primary btn-sm", role: "button"%> <br>
+                  </div>
+                <% end%>
+              <% else %>
+                <p class="card-text">Aucun évènement n'a été créé</p>
+              <% end%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

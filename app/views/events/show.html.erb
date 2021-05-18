@@ -1,0 +1,40 @@
+<head>
+<link rel="stylesheet" href="https://fontawesome.com/icons/calendar-week?style=solid">
+</head>
+<body>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Bienvenue sur la page de l'évènement <%= @event.title%> ! </h1>
+      <p class="lead text-muted"><%= @event.description %></p>
+      <% if @event.administrator==current_user %>
+      <%= link_to "Lien pour modifier l'évènement", edit_event_path(@event.id),class: "btn btn-primary" %><br>
+      <%= link_to "Supprimer l'évènement", event_path(@event.id), method: :delete, data: { confirm: 'Etes-vous sûr de vouloir le supprimer ?' } %>
+      <% end %>
+    </div>
+  </section>
+  <div class="container">
+    <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Date</h5>
+            <p class="card-text">Jour : <%= @event.start_date.strftime("%d/%m/%Y")%></p>
+            <p class="card-text">Heure : <%= @event.start_date.strftime("%k:%M")%></p>
+            <p class="card-text">Durée : <%= @event.duration %> minutes </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Informations complémentaires</h5>
+            <p class="card-text">Ville : <%= @event.location %></p>
+            <p class="card-text">Prix : <%= @event.price %> €</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Organisateur</h5>
+            <p class="card-text"><%= @event.administrator.first_name %> <%= @event.administrator.last_name %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
