@@ -5,7 +5,7 @@
   </head>
   <body>
     <h1>Hello <%= @attendance.event.administrator.first_name %> !</h1>
-    <p> Tu t'es inscrit sur l'èvènement <%=@attendance.event.title%> et nous te confirmons ta particiation !</p>
+    <p> <%=@attendance.user.first_name%> s'est inscrit à ton évènement <%=@attendance.event.title%> et nous te confirmons sa particiation !</p>
     <p> À très vite pour tes prochains évènements ! </p>
   </body>
 </html>
