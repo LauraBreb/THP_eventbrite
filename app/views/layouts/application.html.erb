@@ -31,7 +31,6 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item", type: "submit" %>
                 <%= link_to "Se déconnecter", "users/sign_out", class: "dropdown-item", type: "submit" %>
-                <%= link_to "Delete sessions", destroy_user_session_path, method: "delete", { confirm: "Are you sure?", disable_with: "Processing..." } %>
               </div>
             </li>
           <% else %>
