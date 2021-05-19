@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag :defaults %>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -21,7 +21,7 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <%= link_to "Créer un évènement", new_event_path, class: "nav-link"%>
-            <%= link_to "Se déconnecter", destroy_user_session_path, class: "dropdown-item" %>
+            <%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0", style="align">
@@ -32,7 +32,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
-                <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                <%= link_to "Se déconnecter", destroy_user_session_path, method:"delete", class: "dropdown-item" %>
               </div>
             </li>
           <% else %>
