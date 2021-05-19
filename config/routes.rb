@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  get 'users/show'
+  root to: "events#index"
   devise_for :users
   resources :events
-  root to: "events#index"
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:edit, :update, :show]
 end
