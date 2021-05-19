@@ -7,8 +7,10 @@
       <h1 class="jumbotron-heading">Bienvenue sur la page de l'évènement <%= @event.title%> ! </h1>
       <p class="lead text-muted"><%= @event.description %></p>
       <% if @event.administrator==current_user %>
-      <%= link_to "Lien pour modifier l'évènement", edit_event_path(@event.id),class: "btn btn-primary" %><br>
-      <%= link_to "Supprimer l'évènement", event_path(@event.id), method: :delete, data: { confirm: 'Etes-vous sûr de vouloir le supprimer ?' } %>
+        <%= link_to "Lien pour modifier l'évènement", edit_event_path(@event.id),class: "btn btn-primary" %><br>
+        <%= link_to "Supprimer l'évènement", event_path(@event.id), method: :delete, data: { confirm: 'Etes-vous sûr de vouloir le supprimer ?' } %>
+      <% elsif @event.administrator!=current_user && @event.current_user_not_registered(current_user) %>
+        <%= link_to "S'inscrire à l'évènement", new_attendance_path%>
       <% end %>
     </div>
   </section>
@@ -35,6 +37,13 @@
             <p class="card-text"><%= @event.administrator.first_name %> <%= @event.administrator.last_name %></p>
           </div>
         </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Participants</h5>
+            <p class="card-text"><%= @event.attendances.count%> inscrits</p>
+          </div>
+        </div>
+        
       </div>
     </div>
 </body>

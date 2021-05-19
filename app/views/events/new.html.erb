@@ -2,30 +2,35 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <h1 class="h3 mb-3 font-weight-normal text-center">Crée maintenant ton propre évènement !</h1>
-      <form action="/events" method="post">
-        <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >
-        <div class="form-group"> Date <br>
-          <input type="datetime" name="start_date" class="form-control">
+      <%= form_tag url_for(action: 'create'), method: "post" do %>
+        <div class="form-group">
+          <%= label_tag 'Date de début' %>
+          <%= datetime_field_tag 'start_date', (@event.start_date if !@event.nil?), min: (Date.today + 1.days), class: "form-control"%>
         </div>
-        <div class="form-group"> Durée <br>
-          <input type="integer" name="duration" class="form-control">
+        <div class="form-group">
+          <%= label_tag 'Durée en minutes' %>
+          <%= number_field_tag 'duration', (@event.duration if !@event.nil?), min: 5, step: 5, class: "form-control" %>
         </div>
-        <div class="form-group"> Titre <br>
-          <input type="text" name="title" class="form-control">
+        <div class="form-group">
+          <%= label_tag 'Titre' %>
+          <%= text_field_tag 'title', (@event.title if !@event.nil?), size: 150, minlength: 5, maxlength: 140, class: "form-control" %>
         </div>
-        <div class="form-group"> Description <br>
-          <input type="text" name="description" class="form-control">
+        <div class="form-group">
+          <%= label_tag 'Description' %>
+          <%= text_area_tag 'description', (@event.description if !@event.nil?), size: "25x10", minlength: 20, maxlength: 1000, class: "form-control" %>
         </div>
-        <div class="form-group"> Prix <br>
-          <input type="integer" name="price" class="form-control">
+        <div class="form-group">
+          <%= label_tag 'Prix en euros' %>
+          <%= number_field_tag 'price', (@event.price if !@event.nil?), min: 1, max: 1000, step: 1, class: "form-control" %>
         </div>
-        <div class="form-group"> Ville <br>
-          <input type="text" name="location" class="form-control">
+        <div class="form-group">
+          <%= label_tag 'Lieu' %>
+          <%= text_field_tag 'location', (@event.location if !@event.nil?), size: 50, minlength: 1, maxlength: 40, class: "form-control" %>
         </div>
         <div class="actions mt-5">
-          <input type="submit" value="Valider", class="btn btn-lg btn-primary btn-block" >
+          <%= submit_tag "Enregistrer cet événement" %>
         </div>
-      </form>
+      <% end %>
       </div>
     </div>
   </div>

@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :users
   resources :events
   root "events#index"
+  resources :attendances
+  resources :charges
 end
