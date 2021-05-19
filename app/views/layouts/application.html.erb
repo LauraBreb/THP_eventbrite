@@ -31,7 +31,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item", type: "submit" %>
-                <%= link_to "Se déconnecter", destroy_user_session_path, method: "delete", class: "dropdown-item", type: "submit" %>
+                <%= link_to "Se déconnecter", destroy_user_session_path, method: "delete", class: "dropdown-item" %>
+                <%= link_to "Se déconnecter", destroy_user_session_path, class: "dropdown-item", method:"delete", :data => {:confirm => "Êtes-vous sûrs de vouloir vous déconnecter ?"}%>
               </div>
             </li>
           <% else %>
