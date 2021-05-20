@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   validate :duration_must_be_a_multiple_of_5
   validates :title, presence: true, length: {in: 5..140}
   validates :description, presence: true, length: {in: 20..1000}
-  validates :price, presence: true, numericality:{greater_than: 0, less_than: 1001}
+  validates :price, presence: true, numericality:{greater_or_equal_to: 0, less_than: 1001}
   validates :location, presence: true
 
   has_many :attendances
@@ -26,6 +26,15 @@ class Event < ApplicationRecord
       return false
     else
       return true
+    end
+  end
+
+  def is_free?
+    if
+      self.price == 0
+      return true
+    else
+      return false
     end
   end
 

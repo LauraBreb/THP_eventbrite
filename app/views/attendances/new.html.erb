@@ -1,32 +1,36 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <h1 class="h3 mb-3 font-weight-normal text-center">Crée maintenant ton propre évènement !</h1>
-      <form action="/events" method="post">
-        <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >
-        <div class="form-group"> Date <br>
-          <input type="datetime" name="start_date" class="form-control">
-        </div>
-        <div class="form-group"> Durée <br>
-          <input type="integer" name="duration" class="form-control">
-        </div>
-        <div class="form-group"> Titre <br>
-          <input type="text" name="title" class="form-control">
-        </div>
-        <div class="form-group"> Description <br>
-          <input type="text" name="description" class="form-control">
-        </div>
-        <div class="form-group"> Prix <br>
-          <input type="integer" name="price" class="form-control">
-        </div>
-        <div class="form-group"> Ville <br>
-          <input type="text" name="location" class="form-control">
-        </div>
-        <div class="actions mt-5">
-          <input type="submit" value="Valider", class="btn btn-lg btn-primary btn-block" >
-        </div>
-      </form>
-      </div>
+      <h1 class="h3 mb-3 font-weight-normal text-center"> Inscription à l'évènement <%= @event.title%> </h1>
+      <% if @event.is_free? %>
+        <%= form_tag event_attendances_path(@event.id) do %>
+          <div class="form-group">
+            <%= hidden_field_tag 'stripe_customer_id', value: SecureRandom.urlsafe_base64, class: "form-control" %>
+          </div>
+          <div class="actions mt-5">
+            <%= submit_tag "Je m'inscris" %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= form_tag event_attendances_path(@event.id) do %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <label class="amount">
+            <span>Prix : <%= @event.price%> €</span>
+          </label>
+        </article>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Achat d'un produit"
+            data-amount="500"
+            data-locale="auto">
+        </script>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

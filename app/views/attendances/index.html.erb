@@ -1,0 +1,28 @@
+<head>
+<link rel="stylesheet" href="https://fontawesome.com/icons/calendar-week?style=solid">
+</head>
+<body>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Voici ton espace pour gérer l'évènement <%= @event.title%> ! </h1>
+      <% if @event.administrator==current_user %>
+        <%= link_to "Modifier l'évènement", edit_event_path(@event.id),class: "btn btn-primary" %><br>
+        <%= link_to "Supprimer l'évènement", event_path(@event.id), method: :delete, data: { confirm: 'Etes-vous sûr de vouloir le supprimer ?' } %>
+      <% end %>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <% @list_of_participants.each do |participant| %>
+        <div class="col-md-4">
+          <h2><%=participant.first_name%> <%=participant.last_name%></h2>
+          <p>email : <%= participant.email %></p>
+        </div>
+      <% end%>
+    </div>
+
+    <br>
+
+  </div>
+</body>
